@@ -19,7 +19,9 @@
   font-size:clamp(46px,10.5vw,140px);line-height:.92;letter-spacing:-.045em;
   margin:0 0 28px;
 }
-.hero-title .ln{display:block;overflow:hidden}
+/* padding gives descenders (the y tail) room inside the overflow clip;
+   the negative margin cancels it so line spacing is unchanged */
+.hero-title .ln{display:block;overflow:hidden;padding-bottom:.22em;margin-bottom:-.14em}
 .hero-title .ln > span{display:block;transform:translateY(105%)}
 .hero-title em{font-style:normal;color:var(--volt)}
 .hero-sub{max-width:56ch;font-size:clamp(16px,1.7vw,19px);color:var(--ink-2)}
@@ -29,6 +31,13 @@
   text-transform:uppercase;color:var(--ink-3);
 }
 .hero-meta b{color:var(--volt);font-weight:500}
+/* emphasised offering pill */
+.hero-meta .cats{
+  color:var(--volt);font-weight:600;letter-spacing:.1em;
+  border:1px solid rgba(200,255,77,.4);border-radius:99px;padding:5px 13px;
+  background:var(--volt-dim);text-shadow:0 0 18px rgba(200,255,77,.25);
+}
+.hero-meta .cats i{color:rgba(200,255,77,.55);font-style:normal;padding:0 3px;text-shadow:none}
 /* cue sits in normal flow at the foot of the hero column, so it can never
    overlap the hero meta regardless of window height */
 .cue{
