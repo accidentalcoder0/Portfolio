@@ -1,0 +1,113 @@
+/* ============================================================
+   LAYOUT - nav, rail, sections, footer, page transition
+   ============================================================ */
+
+/* film grain */
+.grain{
+  position:fixed;inset:0;z-index:9999;pointer-events:none;
+  opacity:.035;mix-blend-mode:overlay;
+}
+
+/* cursor glow (desktop pointer only, toggled by JS) */
+.glow{
+  position:fixed;top:0;left:0;width:520px;height:520px;z-index:1;pointer-events:none;
+  transform:translate(-50%,-50%);opacity:0;transition:opacity .5s var(--ease);
+  background:radial-gradient(circle,rgba(200,255,77,.06),transparent 60%);
+  will-change:transform;
+}
+.glow.on{opacity:1}
+
+/* ---------- NAV ---------- */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  background:rgba(8,9,11,.55);
+  border-bottom:1px solid transparent;transition:border-color .4s,background .4s;
+}
+nav.stuck{border-bottom-color:var(--line);background:rgba(8,9,11,.85)}
+.nav-in{
+  max-width:var(--maxw);margin:0 auto;padding:14px var(--gut);
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+}
+.brand{
+  font-family:var(--display);font-weight:700;font-size:16px;letter-spacing:-.02em;
+  text-decoration:none;display:flex;align-items:center;gap:9px;
+}
+.brand i{
+  width:7px;height:7px;border-radius:50%;background:var(--volt);
+  box-shadow:0 0 14px var(--volt);animation:pulse 2.6s var(--ease) infinite;
+}
+.nav-links{display:flex;gap:26px;font-family:var(--mono);font-size:12px;letter-spacing:.04em}
+.nav-links a{text-decoration:none;color:var(--ink-3);transition:color .25s;position:relative}
+.nav-links a:hover,.nav-links a.on{color:var(--ink)}
+.nav-links a::after{
+  content:'';position:absolute;left:0;right:100%;bottom:-5px;height:1px;
+  background:var(--volt);transition:right .35s var(--ease);
+}
+.nav-links a:hover::after,.nav-links a.on::after{right:0}
+@media(max-width:760px){.nav-links{display:none}}
+
+/* ---------- LEFT RAIL ---------- */
+.rail{
+  position:fixed;left:22px;top:50%;transform:translateY(-50%);z-index:60;
+  display:flex;flex-direction:column;gap:15px;
+  opacity:0;transition:opacity .5s;
+}
+.rail.show{opacity:1}
+.rail a{
+  display:flex;align-items:center;gap:10px;text-decoration:none;
+  font-family:var(--mono);font-size:10px;letter-spacing:.14em;
+  text-transform:uppercase;
+  /* ghosted by default, brightens only when active */
+  color:var(--ink-4);opacity:.32;
+  transition:opacity .4s var(--ease),color .4s var(--ease);
+}
+.rail a i{width:16px;height:1px;background:var(--ink-4);transition:.4s var(--ease)}
+.rail a span{opacity:0;transform:translateX(-6px);transition:.35s var(--ease)}
+.rail a:hover{opacity:.7;color:var(--ink-2)}
+.rail a:hover i{background:var(--ink-2)}
+.rail a:hover span{opacity:1;transform:none}
+.rail a.on{opacity:1;color:var(--ink)}
+.rail a.on i{width:36px;background:var(--volt);box-shadow:0 0 10px var(--volt-dim)}
+.rail a.on span{opacity:1;transform:none}
+@media(max-width:1340px){.rail{display:none}}
+
+/* scroll progress bar under nav */
+.progress{
+  position:fixed;top:0;left:0;height:2px;background:var(--volt);z-index:101;
+  width:0;box-shadow:0 0 12px var(--volt);
+}
+
+/* ---------- SECTIONS ---------- */
+section{position:relative}
+.sec{padding:clamp(90px,13vw,170px) 0}
+
+/* ---------- FOOTER ---------- */
+footer{
+  border-top:1px solid var(--line);padding:26px 0;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--ink-3);
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+}
+
+/* ---------- PAGE TRANSITION (court wipe) ---------- */
+.wipe{
+  position:fixed;inset:0;z-index:9998;pointer-events:none;
+  display:grid;grid-template-columns:repeat(6,1fr);
+}
+.wipe span{background:var(--bg-raise-2);transform:scaleY(0);transform-origin:bottom}
+.wipe span::after{
+  content:'';position:absolute;inset:0;
+  border-right:1px solid var(--line);
+}
+.wipe.cover span{transform:scaleY(1);transform-origin:bottom;transition:transform .5s var(--ease)}
+.wipe.reveal span{transform:scaleY(0);transform-origin:top;transition:transform .5s var(--ease)}
+.wipe.cover span:nth-child(2){transition-delay:.05s}
+.wipe.cover span:nth-child(3){transition-delay:.1s}
+.wipe.cover span:nth-child(4){transition-delay:.15s}
+.wipe.cover span:nth-child(5){transition-delay:.2s}
+.wipe.cover span:nth-child(6){transition-delay:.25s}
+.wipe.reveal span:nth-child(2){transition-delay:.05s}
+.wipe.reveal span:nth-child(3){transition-delay:.1s}
+.wipe.reveal span:nth-child(4){transition-delay:.15s}
+.wipe.reveal span:nth-child(5){transition-delay:.2s}
+.wipe.reveal span:nth-child(6){transition-delay:.25s}

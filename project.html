@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Project · Shil</title>
+<meta name="description" content="Project detail. An independent developer building software for real communities.">
+<meta name="theme-color" content="#08090B">
+<meta property="og:title" content="Shil, independent developer">
+<meta property="og:description" content="Real tools for real communities. Tournament systems, club websites, scheduling apps.">
+<meta property="og:type" content="website">
+<!-- absolute URLs so previews unfurl when shared. If your repo name differs, change the base to https://accidentalcoder0.github.io/REPONAME/ -->
+<meta property="og:image" content="https://accidentalcoder0.github.io/Portfolio/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://accidentalcoder0.github.io/Portfolio/og-image.png">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/motion.css">
+</head>
+<body>
+
+<svg class="grain" aria-hidden="true"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="4"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>
+<div class="progress" id="progress"></div>
+<div class="wipe" id="wipe" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+
+<nav id="nav">
+  <div class="nav-in">
+    <a class="brand" href="index.html" data-transition><i></i>Shil</a>
+    <div class="nav-links">
+      <a href="index.html#work" data-transition>Work</a>
+      <a href="index.html#approach" data-transition>Approach</a>
+      <a href="index.html#contact" data-transition>Contact</a>
+    </div>
+  </div>
+</nav>
+
+<main id="app"><!-- rendered by page-project.js --></main>
+
+<div class="wrap"><footer>
+  <span>© 2026 Shil, built by hand, no framework</span>
+  <span>Manchester, UK</span>
+</footer></div>
+
+<!-- order matters: data + markup builder, then the renderer, then the demos -->
+<script src="js/projects.js"></script>
+<script src="js/demo-markup.js"></script>
+<script src="js/page-project.js"></script>
+<script src="js/core.js"></script>
+<script src="js/demos.js"></script>
+</body>
+</html>
