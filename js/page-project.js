@@ -50,7 +50,7 @@ var html =
 
   '<div class="wrap"><div class="next-proj">'+
     '<span class="mono-note">Next project</span>'+
-    '<a href="project.html?p='+next+'" data-transition style="color:'+nd.pa+'">'+nd.title+' <span>→</span></a>'+
+    '<a href="project.html?p='+next+'" data-transition data-accent="'+nd.pa+'" style="color:'+nd.pa+'">'+nd.title+' <span>→</span></a>'+
   '</div></div>';
 
 document.getElementById('app').innerHTML = html;

@@ -61,9 +61,10 @@ footer{
   display:grid;grid-template-columns:repeat(6,1fr);
 }
 /* columns rise up to cover when leaving, then drop back down to reveal on arrival */
-.wipe span{background:var(--accent);transform:translateY(101%)}
+.wipe span{background:var(--wipe-col,var(--accent));transform:translateY(101%)}
 .wipe.cover span{transform:translateY(0);transition:transform .5s var(--ease)}
-.wipe.hold span{transform:translateY(0)}
+/* set by the head script before first paint, so the incoming page starts covered */
+html.wipe-in .wipe span{transform:translateY(0)}
 .wipe.drop span{transform:translateY(101%);transition:transform .55s var(--ease)}
 .wipe.cover span:nth-child(2),.wipe.drop span:nth-child(2){transition-delay:.05s}
 .wipe.cover span:nth-child(3),.wipe.drop span:nth-child(3){transition-delay:.1s}

@@ -66,19 +66,23 @@ if(!reduce && fine){
 (function pageTransition(){
   var wipe = document.getElementById('wipe');
   var links = document.querySelectorAll('a[data-transition]');
-  if(wipe && !reduce){
-    wipe.classList.add('hold');                 /* instantly covering */
-    requestAnimationFrame(function(){ wipe.classList.remove('hold'); wipe.classList.add('drop'); });  /* then drop down to reveal */
-    setTimeout(function(){ wipe.className='wipe'; }, 1000);
+  /* if we arrived already covered (head script set .wipe-in), drop the bars away */
+  if(wipe && !reduce && root.classList.contains('wipe-in')){
+    requestAnimationFrame(function(){ root.classList.remove('wipe-in'); wipe.classList.add('drop'); });
+    setTimeout(function(){ wipe.className='wipe'; root.classList.remove('wipe-in'); }, 1000);
   }
   links.forEach(function(a){
     a.addEventListener('click', function(ev){
-      /* flag internal navigation so the home page can skip its intro on return */
-      try{ sessionStorage.setItem('internalNav','1'); }catch(e){}
       if(reduce || !wipe) return;
       var href = a.getAttribute('href');
       if(!href || href.charAt(0)==='#') return;
       ev.preventDefault();
+      /* colour the bars with the DESTINATION's accent, both leaving and arriving,
+         so the up-then-down wipe is one continuous colour */
+      var card = a.closest ? a.closest('.proj') : null;
+      var destCol = a.getAttribute('data-accent') || (card && card.getAttribute('data-accent')) || '#FF5A36';
+      root.style.setProperty('--wipe-col', destCol);
+      try{ sessionStorage.setItem('internalNav','1'); sessionStorage.setItem('wipeIn','1'); sessionStorage.setItem('wipeCol',destCol); }catch(e){}
       wipe.className='wipe cover';
       setTimeout(function(){ location.href = href; }, 700);
     });
