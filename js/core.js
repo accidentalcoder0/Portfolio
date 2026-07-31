@@ -104,25 +104,35 @@ if(!reduce && fine){
   if(!playIntro){ intro.style.display='none'; return; }
   var projects = Array.prototype.slice.call(document.querySelectorAll('.proj'));
   if(!projects.length){ intro.style.display='none'; return; }
-  var items = projects.map(function(p){
+  /* white line/suit motif per project, in project order (Trickster..Shuttle Up) */
+  var SHAPES = [
+    '<svg class="shape" viewBox="0 0 100 100"><text class="f" x="50" y="48" text-anchor="middle" font-size="48">♠</text><text class="f" x="26" y="76" text-anchor="middle" font-size="24">♥</text><text class="f" x="74" y="76" text-anchor="middle" font-size="24">♣</text></svg>',
+    '<svg class="shape" viewBox="0 0 100 100"><path d="M34 30 H66 L58 60 H42 Z"/><line x1="43" y1="32" x2="46" y2="58"/><line x1="50" y1="31" x2="50" y2="59"/><line x1="57" y1="32" x2="54" y2="58"/><circle class="f" cx="50" cy="68" r="9"/></svg>',
+    '<svg class="shape" viewBox="0 0 100 100"><path d="M15 25 H35 V50 M15 75 H35 V50 M35 50 H50 M85 25 H65 V50 M85 75 H65 V50 M65 50 H50"/></svg>',
+    '<svg class="shape" viewBox="0 0 100 100"><path d="M50 24 A26 26 0 1 1 26 42"/><path class="f" d="M26 42 l-10 -2 l4 11 Z"/></svg>',
+    '<svg class="shape" viewBox="0 0 100 100"><rect x="20" y="18" width="60" height="64" rx="2"/><line x1="20" y1="50" x2="80" y2="50"/><line x1="50" y1="18" x2="50" y2="82"/><circle class="f" cx="35" cy="34" r="4"/><circle class="f" cx="65" cy="34" r="4"/><circle class="f" cx="35" cy="66" r="4"/><circle class="f" cx="65" cy="66" r="4"/></svg>'
+  ];
+  var items = projects.map(function(p, ix){
     var h3 = p.querySelector('h3');
-    return { c: p.getAttribute('data-accent'), t: h3 ? h3.textContent : '' };
+    return { c: p.getAttribute('data-accent'), t: h3 ? h3.textContent : '', s: SHAPES[ix] || '' };
   });
   document.body.style.overflow = 'hidden';
-  var per = 700, i = 0;
+  intro.style.background = items[0].c;          /* opaque base, so the page never shows through */
+  var fade = 520, gap = 560, i = 0;
   function show(idx){
     var it = items[idx];
     var panel = document.createElement('div');
     panel.className = 'panel';
     panel.style.background = it.c;
-    panel.innerHTML = '<h2>'+it.t+'</h2>';
-    intro.appendChild(panel);
-    panel.style.animation = 'introIn '+per+'ms ease forwards';
-    setTimeout(function(){ if(panel.parentNode) panel.parentNode.removeChild(panel); }, per);
+    panel.innerHTML = it.s + '<h2>'+it.t+'</h2>';
+    intro.appendChild(panel);                    /* stacks on top, opaque underneath = no bleed */
+    panel.style.animation = 'introIn '+fade+'ms var(--ease) forwards';
+    var h2 = panel.querySelector('h2');
+    if(h2) h2.style.animation = 'introTitle '+fade+'ms var(--ease) forwards';
   }
   (function step(){
     if(i >= items.length){ finish(); return; }
-    show(i++); setTimeout(step, per*0.6);
+    show(i++); setTimeout(step, gap);
   })();
   function finish(){
     intro.classList.add('done');
@@ -130,7 +140,7 @@ if(!reduce && fine){
     setTimeout(function(){ intro.style.display='none'; }, 520);
   }
   /* hard fallback so nobody is ever stuck on the splash */
-  setTimeout(function(){ intro.classList.add('done'); document.body.style.overflow=''; setTimeout(function(){ intro.style.display='none'; }, 520); }, 4500);
+  setTimeout(function(){ intro.classList.add('done'); document.body.style.overflow=''; setTimeout(function(){ intro.style.display='none'; }, 520); }, 5000);
 })();
 
 /* magnetic buttons */

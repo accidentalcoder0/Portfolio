@@ -6,16 +6,28 @@
 /* ---------- LIVING BACKGROUND (soft drifting colour shapes) ---------- */
 .bg{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
 .bg span{position:absolute;border-radius:50%;filter:blur(70px);opacity:.5;will-change:transform}
-.bg span:nth-child(1){width:520px;height:520px;background:var(--cobalt);top:-8%;left:-6%;animation:drift1 26s var(--ease-in-out) infinite}
-.bg span:nth-child(2){width:460px;height:460px;background:var(--coral);top:30%;right:-10%;animation:drift2 32s var(--ease-in-out) infinite}
-.bg span:nth-child(3){width:420px;height:420px;background:var(--gold);bottom:-6%;left:18%;animation:drift3 30s var(--ease-in-out) infinite}
-.bg span:nth-child(4){width:400px;height:400px;background:var(--mint);top:52%;left:38%;animation:drift1 36s var(--ease-in-out) infinite reverse}
-@media(max-width:640px){.bg span{filter:blur(50px);opacity:.42}}
+.bg span:nth-child(1){width:44vmax;height:44vmax;background:var(--cobalt);top:-8%;left:-6%;animation:drift1 26s var(--ease-in-out) infinite}
+.bg span:nth-child(2){width:40vmax;height:40vmax;background:var(--coral);top:30%;right:-10%;animation:drift2 32s var(--ease-in-out) infinite}
+.bg span:nth-child(3){width:36vmax;height:36vmax;background:var(--gold);bottom:-6%;left:18%;animation:drift3 30s var(--ease-in-out) infinite}
+.bg span:nth-child(4){width:34vmax;height:34vmax;background:var(--mint);top:52%;left:38%;animation:drift1 36s var(--ease-in-out) infinite reverse}
+/* phones: a fixed + blurred + animated layer re-rasterises on every toolbar
+   resize and stutters the scroll, so swap it for cheap static page tints */
+@media(max-width:760px){
+  .bg{display:none}
+  html{background:
+    radial-gradient(60vmax 60vmax at 12% -6%, color-mix(in srgb,var(--cobalt) 12%,var(--paper)), transparent 62%),
+    radial-gradient(58vmax 58vmax at 96% 20%, color-mix(in srgb,var(--coral) 12%,var(--paper)), transparent 60%),
+    radial-gradient(56vmax 56vmax at 30% 108%, color-mix(in srgb,var(--gold) 12%,var(--paper)), transparent 60%),
+    var(--paper);
+  }
+}
 
 /* ---------- INTRO SPLASH ---------- */
-.intro{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.intro{position:fixed;inset:0;z-index:9999;overflow:hidden;pointer-events:none}
 .intro .panel{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0}
-.intro .panel h2{font-family:var(--display);font-weight:800;font-size:clamp(40px,9vw,120px);letter-spacing:-.04em;color:#fff;margin:0;padding:0 6vw;text-align:center}
+.intro .panel .shape{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:min(72vw,480px);height:min(72vw,480px);opacity:.15;stroke:#fff;stroke-width:3;fill:none}
+.intro .panel .shape .f{fill:#fff;stroke:none}
+.intro .panel h2{position:relative;font-family:var(--display);font-weight:800;font-size:clamp(38px,8.5vw,108px);letter-spacing:-.04em;color:#fff;margin:0;padding:0 8vw;text-align:center;line-height:1}
 .intro.done{opacity:0;transition:opacity .5s var(--ease)}
 
 /* ---------- HERO ---------- */
@@ -275,3 +287,12 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border:0;border-radiu
 .next-proj a:hover{color:var(--accent);gap:22px}
 .back-link{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink2);text-decoration:none;display:inline-flex;gap:9px;align-items:center;transition:color .3s var(--ease),gap .3s var(--ease)}
 .back-link:hover{color:var(--ink);gap:14px}
+
+/* ---------- TOUCH TARGETS (phones / coarse pointers) ---------- */
+@media(pointer:coarse){
+  .btn{min-height:42px;padding:11px 16px;font-size:11.5px}
+  .qchip{padding:9px 13px;font-size:12.5px}
+  .court .chip{padding:11px 12px}
+  .hand .card{width:56px;height:80px}
+  .cta,.link-accent,.nav-pill,.back-link{padding-top:12px;padding-bottom:12px}
+}
