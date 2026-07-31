@@ -58,8 +58,11 @@ footer{
 /* ---------- PAGE TRANSITION (colour wipe) ---------- */
 .wipe{
   position:fixed;inset:0;z-index:98;pointer-events:none;
-  display:grid;grid-template-columns:repeat(6,1fr);
+  display:none;grid-template-columns:repeat(6,1fr);
 }
+/* only rendered while a transition is actually running, so the coloured
+   bars can't linger just off-screen and peek during mobile toolbar resizes */
+.wipe.cover,.wipe.drop,html.wipe-in .wipe{display:grid}
 /* columns rise up to cover when leaving, then drop back down to reveal on arrival */
 .wipe span{background:var(--wipe-col,var(--accent));transform:translateY(101%)}
 .wipe.cover span{transform:translateY(0);transition:transform .5s var(--ease)}
