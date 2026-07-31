@@ -9,7 +9,7 @@ window.PROJECTS = {
     num:'01', title:"Trickster's Hand", role:'Multiplayer game', pa:'#9B1C2E',
     tagline:'A real-time card game for two to six players, plus spectators, deployed and live.',
     meta:[['Role','Solo build'],['Players','2 to 6, plus spectators'],['Stack','Node + Socket.IO'],['Live','tricksters-hand.onrender.com']],
-    intro:'A card game we play in person, rebuilt so it works with friends now spread across three countries. It grew into a finished, deployed product.',
+    intro:'A card game we play in person, rebuilt so it works with friends now spread across countries. It grew into a finished, deployed product.',
     sections:[
       {h:'How it plays',
        p:'You hold the Ace of Spades and lead. Everyone follows the lead suit if they can, and the highest card of the lead suit loses the trick. Play off-suit and the trick ends at once, and the loser picks up the whole pile. Empty your hand to get out; the last player still holding cards loses.'},

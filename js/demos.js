@@ -19,8 +19,14 @@ var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(!root) return;
   var frame=root.querySelector('iframe');
   if(!frame) return;
+  var view=frame.parentNode;                     /* .sf-view */
+  var BASE=1280;                                 /* the logical desktop width the site is rendered at */
+  function scale(){ if(view){ var s=view.clientWidth/BASE; frame.style.transform='scale('+s+')'; } }
+  scale();
+  window.addEventListener('resize', scale, {passive:true});
   var started=false, loaded=false;
   function start(){
+    scale();
     if(started) return; started=true;
     var timer=setTimeout(function(){ if(!loaded) root.classList.add('failed'); }, 8000);
     frame.addEventListener('load', function(){
