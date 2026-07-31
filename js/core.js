@@ -66,10 +66,11 @@ if(!reduce && fine){
 (function pageTransition(){
   var wipe = document.getElementById('wipe');
   var links = document.querySelectorAll('a[data-transition]');
+  var wipeTimer;
   /* if we arrived already covered (head script set .wipe-in), drop the bars away */
   if(wipe && !reduce && root.classList.contains('wipe-in')){
     requestAnimationFrame(function(){ root.classList.remove('wipe-in'); wipe.classList.add('drop'); });
-    setTimeout(function(){ wipe.className='wipe'; root.classList.remove('wipe-in'); }, 1000);
+    wipeTimer = setTimeout(function(){ wipe.className='wipe'; root.classList.remove('wipe-in'); }, 1000);
   }
   links.forEach(function(a){
     a.addEventListener('click', function(ev){
@@ -77,13 +78,19 @@ if(!reduce && fine){
       var href = a.getAttribute('href');
       if(!href || href.charAt(0)==='#') return;
       ev.preventDefault();
-      /* colour the bars with the DESTINATION's accent, both leaving and arriving,
-         so the up-then-down wipe is one continuous colour */
+      /* cancel any pending arrival-cleanup so it can't reset the wipe mid-rise */
+      clearTimeout(wipeTimer);
+      /* colour the bars with the DESTINATION's accent, both leaving and arriving */
       var card = a.closest ? a.closest('.proj') : null;
       var destCol = a.getAttribute('data-accent') || (card && card.getAttribute('data-accent')) || '#FF5A36';
       root.style.setProperty('--wipe-col', destCol);
-      try{ sessionStorage.setItem('internalNav','1'); sessionStorage.setItem('wipeIn','1'); sessionStorage.setItem('wipeCol',destCol); }catch(e){}
+      /* reset to a clean hidden state, commit it, then animate the rise, so the
+         up-animation always plays no matter what the wipe was doing before */
+      root.classList.remove('wipe-in');
+      wipe.className='wipe';
+      void wipe.offsetWidth;
       wipe.className='wipe cover';
+      try{ sessionStorage.setItem('internalNav','1'); sessionStorage.setItem('wipeIn','1'); sessionStorage.setItem('wipeCol',destCol); }catch(e){}
       setTimeout(function(){ location.href = href; }, 700);
     });
   });
