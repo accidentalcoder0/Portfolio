@@ -12,16 +12,11 @@
 .bg span:nth-child(4){width:34vmax;height:34vmax;background:var(--mint);top:52%;left:38%;animation:drift1 36s var(--ease-in-out) infinite reverse}
 /* phones: a fixed + blurred + animated layer re-rasterises on every toolbar
    resize and stutters the scroll, so swap it for cheap static page tints */
+/* phones: plain cream, no animated blobs and no coloured gradient, so the
+   mobile toolbar's reveal on scroll never flashes an odd colour band */
 @media(max-width:760px){
   .bg{display:none}
-  /* solid rgba washes (no color-mix, works everywhere), clearly visible but static */
-  html{background:
-    radial-gradient(72vmax 72vmax at 6% -10%, rgba(43,80,230,.16), transparent 60%),
-    radial-gradient(66vmax 66vmax at 102% 16%, rgba(255,90,54,.15), transparent 58%),
-    radial-gradient(62vmax 62vmax at 26% 114%, rgba(255,194,46,.17), transparent 60%),
-    radial-gradient(50vmax 50vmax at 88% 96%, rgba(15,176,122,.13), transparent 60%),
-    var(--paper);
-  }
+  html{background:var(--paper)}
 }
 
 /* ---------- INTRO SPLASH ---------- */

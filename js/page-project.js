@@ -25,7 +25,7 @@ if(d.link){
   var label = d.linkLabel || ('Visit '+domain+' ↗');
   linkHtml = '<p style="margin-top:26px"><a class="link-accent" href="'+d.link+'" target="_blank" rel="noopener">'+label+'</a></p>';
 } else {
-  linkHtml = '<p class="mono-note" style="margin-top:26px">Source kept private. The demo on the right runs the real logic.</p>';
+  linkHtml = '<p class="mono-note" style="margin-top:26px">Source kept private. The demo runs the real logic.</p>';
 }
 
 var html =
