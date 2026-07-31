@@ -1,113 +1,72 @@
 /* ============================================================
-   LAYOUT - nav, rail, sections, footer, page transition
+   LAYOUT - nav, progress, cursor dot, footer, page transition
    ============================================================ */
 
-/* film grain */
-.grain{
-  position:fixed;inset:0;z-index:9999;pointer-events:none;
-  opacity:.035;mix-blend-mode:overlay;
+.progress{
+  position:fixed;top:0;left:0;height:4px;width:0;background:var(--accent);
+  z-index:100;transition:background .6s var(--ease);
 }
-
-/* cursor glow (desktop pointer only, toggled by JS) */
-.glow{
-  position:fixed;top:0;left:0;width:520px;height:520px;z-index:1;pointer-events:none;
-  transform:translate(-50%,-50%);opacity:0;transition:opacity .5s var(--ease);
-  background:radial-gradient(circle,rgba(200,255,77,.06),transparent 60%);
-  will-change:transform;
+.dot{
+  position:fixed;top:0;left:0;width:26px;height:26px;border-radius:50%;
+  background:var(--accent);pointer-events:none;z-index:99;
+  transform:translate(-50%,-50%);opacity:0;mix-blend-mode:multiply;
+  transition:opacity .4s,background .6s var(--ease);
 }
-.glow.on{opacity:1}
 
 /* ---------- NAV ---------- */
 nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-  background:rgba(8,9,11,.55);
-  border-bottom:1px solid transparent;transition:border-color .4s,background .4s;
+  position:sticky;top:0;z-index:80;
+  background:rgba(251,244,233,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid transparent;transition:border-color .3s;
 }
-nav.stuck{border-bottom-color:var(--line);background:rgba(8,9,11,.85)}
+nav.stuck{border-bottom-color:var(--hair)}
 .nav-in{
-  max-width:var(--maxw);margin:0 auto;padding:14px var(--gut);
+  max-width:var(--maxw);margin:0 auto;padding:16px var(--gut);
   display:flex;align-items:center;justify-content:space-between;gap:20px;
 }
 .brand{
-  font-family:var(--display);font-weight:700;font-size:16px;letter-spacing:-.02em;
+  font-family:var(--display);font-weight:800;font-size:20px;letter-spacing:-.02em;
   text-decoration:none;display:flex;align-items:center;gap:9px;
 }
-.brand i{
-  width:7px;height:7px;border-radius:50%;background:var(--volt);
-  box-shadow:0 0 14px var(--volt);animation:pulse 2.6s var(--ease) infinite;
-}
-.nav-links{display:flex;gap:26px;font-family:var(--mono);font-size:12px;letter-spacing:.04em}
-.nav-links a{text-decoration:none;color:var(--ink-3);transition:color .25s;position:relative}
+.brand i{width:11px;height:11px;border-radius:50%;background:var(--accent);transition:background .6s var(--ease)}
+.nav-links{display:flex;gap:24px;align-items:center;font-size:14px;font-weight:500}
+.nav-links a{text-decoration:none;color:var(--ink2);position:relative;transition:color .25s}
 .nav-links a:hover,.nav-links a.on{color:var(--ink)}
 .nav-links a::after{
-  content:'';position:absolute;left:0;right:100%;bottom:-5px;height:1px;
-  background:var(--volt);transition:right .35s var(--ease);
+  content:'';position:absolute;left:0;right:100%;bottom:-4px;height:2px;
+  background:var(--accent);transition:right .35s var(--ease),background .6s var(--ease);
 }
 .nav-links a:hover::after,.nav-links a.on::after{right:0}
-@media(max-width:760px){.nav-links{display:none}}
-
-/* ---------- LEFT RAIL ---------- */
-.rail{
-  position:fixed;left:22px;top:50%;transform:translateY(-50%);z-index:60;
-  display:flex;flex-direction:column;gap:15px;
-  opacity:0;transition:opacity .5s;
+/* higher specificity than `.nav-links a`, and accent-filled so it pops */
+.nav-links a.nav-pill{
+  background:var(--accent);color:#fff;border-radius:99px;padding:10px 18px;
+  font-size:13px;font-weight:600;text-decoration:none;
+  transition:background .6s var(--ease),transform .2s var(--spring);
 }
-.rail.show{opacity:1}
-.rail a{
-  display:flex;align-items:center;gap:10px;text-decoration:none;
-  font-family:var(--mono);font-size:10px;letter-spacing:.14em;
-  text-transform:uppercase;
-  /* ghosted by default, brightens only when active */
-  color:var(--ink-4);opacity:.32;
-  transition:opacity .4s var(--ease),color .4s var(--ease);
-}
-.rail a i{width:16px;height:1px;background:var(--ink-4);transition:.4s var(--ease)}
-.rail a span{opacity:0;transform:translateX(-6px);transition:.35s var(--ease)}
-.rail a:hover{opacity:.7;color:var(--ink-2)}
-.rail a:hover i{background:var(--ink-2)}
-.rail a:hover span{opacity:1;transform:none}
-.rail a.on{opacity:1;color:var(--ink)}
-.rail a.on i{width:36px;background:var(--volt);box-shadow:0 0 10px var(--volt-dim)}
-.rail a.on span{opacity:1;transform:none}
-@media(max-width:1340px){.rail{display:none}}
-
-/* scroll progress bar under nav */
-.progress{
-  position:fixed;top:0;left:0;height:2px;background:var(--volt);z-index:101;
-  width:0;box-shadow:0 0 12px var(--volt);
-}
-
-/* ---------- SECTIONS ---------- */
-section{position:relative}
-.sec{padding:clamp(90px,13vw,170px) 0}
+.nav-links a.nav-pill:hover{color:#fff}
+.nav-links a.nav-pill::after{display:none}
+.nav-pill:active{transform:scale(.94)}
+@media(max-width:640px){.nav-links a:not(.nav-pill){display:none}}
 
 /* ---------- FOOTER ---------- */
 footer{
-  border-top:1px solid var(--line);padding:26px 0;
-  font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--ink-3);
+  border-top:1px solid var(--hair);padding:26px 0;margin-top:20px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ink2);
   display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
 }
 
-/* ---------- PAGE TRANSITION (court wipe) ---------- */
+/* ---------- PAGE TRANSITION (colour wipe) ---------- */
 .wipe{
-  position:fixed;inset:0;z-index:9998;pointer-events:none;
+  position:fixed;inset:0;z-index:98;pointer-events:none;
   display:grid;grid-template-columns:repeat(6,1fr);
 }
-.wipe span{background:var(--bg-raise-2);transform:scaleY(0);transform-origin:bottom}
-.wipe span::after{
-  content:'';position:absolute;inset:0;
-  border-right:1px solid var(--line);
-}
-.wipe.cover span{transform:scaleY(1);transform-origin:bottom;transition:transform .5s var(--ease)}
-.wipe.reveal span{transform:scaleY(0);transform-origin:top;transition:transform .5s var(--ease)}
-.wipe.cover span:nth-child(2){transition-delay:.05s}
-.wipe.cover span:nth-child(3){transition-delay:.1s}
-.wipe.cover span:nth-child(4){transition-delay:.15s}
-.wipe.cover span:nth-child(5){transition-delay:.2s}
-.wipe.cover span:nth-child(6){transition-delay:.25s}
-.wipe.reveal span:nth-child(2){transition-delay:.05s}
-.wipe.reveal span:nth-child(3){transition-delay:.1s}
-.wipe.reveal span:nth-child(4){transition-delay:.15s}
-.wipe.reveal span:nth-child(5){transition-delay:.2s}
-.wipe.reveal span:nth-child(6){transition-delay:.25s}
+/* columns rise up to cover when leaving, then drop back down to reveal on arrival */
+.wipe span{background:var(--accent);transform:translateY(101%)}
+.wipe.cover span{transform:translateY(0);transition:transform .5s var(--ease)}
+.wipe.hold span{transform:translateY(0)}
+.wipe.drop span{transform:translateY(101%);transition:transform .55s var(--ease)}
+.wipe.cover span:nth-child(2),.wipe.drop span:nth-child(2){transition-delay:.05s}
+.wipe.cover span:nth-child(3),.wipe.drop span:nth-child(3){transition-delay:.1s}
+.wipe.cover span:nth-child(4),.wipe.drop span:nth-child(4){transition-delay:.15s}
+.wipe.cover span:nth-child(5),.wipe.drop span:nth-child(5){transition-delay:.2s}
+.wipe.cover span:nth-child(6),.wipe.drop span:nth-child(6){transition-delay:.25s}

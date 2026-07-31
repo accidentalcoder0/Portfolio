@@ -295,6 +295,30 @@ var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   // gid-guarded timeout: any pending step is cancelled the instant a new hand is dealt
   function later(fn,ms){ var g=gid; setTimeout(function(){ if(g===gid && !over) fn(); }, reduce?0:ms); }
 
+  function burstConfetti(){
+    if(reduce) return;
+    var host = pileEl.closest ? pileEl.closest('.demo') : null;
+    if(!host) return;
+    var cols=['#9B1C2E','#FFC22E','#2B50E6','#0FB07A','#FF5A36','#6C4BE0'], N=42, parts=[];
+    for(var i=0;i<N;i++){
+      var el=document.createElement('div');
+      el.style.cssText='position:absolute;top:34%;left:50%;width:8px;height:12px;border-radius:2px;pointer-events:none;z-index:5;background:'+cols[i%cols.length];
+      host.appendChild(el);
+      parts.push({el:el,x:0,y:0,vx:(Math.random()-.5)*7,vy:-(4+Math.random()*6),r:Math.random()*360,vr:(Math.random()-.5)*20,life:0});
+    }
+    var t0=performance.now();
+    (function tick(now){
+      var live=false;
+      parts.forEach(function(p){
+        p.vy+=0.28; p.x+=p.vx; p.y+=p.vy; p.r+=p.vr; p.life++;
+        var op=Math.max(0,1-p.life/70);
+        p.el.style.transform='translate('+p.x.toFixed(1)+'px,'+p.y.toFixed(1)+'px) rotate('+p.r.toFixed(0)+'deg)';
+        p.el.style.opacity=op; if(op>0) live=true;
+      });
+      if(live && now-t0<1500) requestAnimationFrame(tick);
+      else parts.forEach(function(p){ if(p.el.parentNode) p.el.parentNode.removeChild(p.el); });
+    })(t0);
+  }
   function deal(){
     gid++; over=false; tricks=0; leader=0;
     var d=newDeck();
@@ -413,6 +437,7 @@ var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     } else {
       logEl.innerHTML='The hand is over. Deal again to replay.';
     }
+    if(players[0] && players[0].out) burstConfetti();
     renderHand();
   }
   function renderHand(){

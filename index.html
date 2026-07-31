@@ -4,118 +4,92 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Shil · I build software for the communities I'm actually in</title>
-<meta name="description" content="Independent developer. Real tools for real communities: tournament systems, club websites, scheduling apps. Everything is live and running.">
-<meta name="theme-color" content="#08090B">
-<!-- share-preview image only, no title/description text. If the repo name differs, change the base URL. -->
+<meta name="description" content="Independent developer. Real tools for real communities: tournament systems, club websites, scheduling apps. Everything is live and in use.">
+<meta name="theme-color" content="#FBF4E9">
 <meta property="og:image" content="https://accidentalcoder0.github.io/Portfolio/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://accidentalcoder0.github.io/Portfolio/og-image.png">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/layout.css">
 <link rel="stylesheet" href="css/components.css">
 <link rel="stylesheet" href="css/motion.css">
 </head>
 <body>
-
-<svg class="grain" aria-hidden="true"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="4"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>
+<div class="bg" id="bg" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
 <div class="progress" id="progress"></div>
+<div class="dot" id="dot"></div>
 <div class="wipe" id="wipe" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+<div class="intro" id="intro" aria-hidden="true"></div>
 
 <nav id="nav">
   <div class="nav-in">
-    <a class="brand" href="#hero"><i></i>Shil</a>
+    <a class="brand" href="#top"><i></i>Shil</a>
     <div class="nav-links">
       <a href="#work">Work</a>
-      <a href="#approach">Approach</a>
       <a href="#contact">Contact</a>
+      <a class="nav-pill magnet" href="#contact">Get in touch</a>
     </div>
   </div>
 </nav>
 
-<div class="rail" id="rail" aria-hidden="true">
-  <a href="#work"><i></i><span>Work</span></a>
-  <a href="#p1"><i></i><span>Trickster</span></a>
-  <a href="#p2"><i></i><span>GZD</span></a>
-  <a href="#p3"><i></i><span>ShuttleScore</span></a>
-  <a href="#p4"><i></i><span>ChoreSync</span></a>
-  <a href="#p5"><i></i><span>Shuttle Up</span></a>
-  <a href="#approach"><i></i><span>Approach</span></a>
-</div>
+<div class="wrap" id="top">
 
-<!-- ============================ HERO ============================ -->
-<header id="hero">
-  <canvas id="court" aria-hidden="true"></canvas>
-  <div class="wrap hero-in">
+  <!-- ============ HERO ============ -->
+  <header id="hero">
+    <div class="shuttle" aria-hidden="true"><b></b></div>
+    <div class="hero-kick">Manchester, UK · Independent developer</div>
     <h1 class="hero-title">
-      <span class="ln"><span>I build software</span></span>
-      <span class="ln"><span>for the communities</span></span>
-      <span class="ln"><span>I'm <em>actually in.</em></span></span>
+      <span class="ln"><span>I build</span></span>
+      <span class="ln"><span>software for</span></span>
+      <span class="ln"><span>the communities</span></span>
+      <span class="ln"><span>I'm <span class="mark">actually in.</span></span></span>
     </h1>
-    <p class="hero-sub">
-      A badminton club that needed a website. A tournament with 110 players and no way to
-      track it. A shared house that could not agree on the cleaning. None of them are demos.
-      People use all three.
-    </p>
+    <p class="hero-sub">A badminton club that needed a website. A tournament with 110 players. A card game my friends play across three countries. None of them are demos, people use all three.</p>
     <div class="hero-meta">
-      <span>Manchester, UK</span>
-      <span>Available for <b>small builds</b></span>
-      <span class="cats">Web apps <i>·</i> Club sites <i>·</i> Tools</span>
+      <span class="tag t1">Web apps</span>
+      <span class="tag t2">Club sites</span>
+      <span class="tag t3">Tools</span>
     </div>
-  </div>
-  <div class="cue"><span>Scroll</span><i></i></div>
-</header>
+  </header>
 
-<div class="wrap"><div class="stats reveal">
-  <div class="stat"><b data-count="5">0</b><span>Projects shipped</span></div>
-  <div class="stat"><b data-count="110" data-prefix="~">0</b><span>Players on live systems</span></div>
-  <div class="stat"><b data-count="0">0</b><span>Ongoing hosting costs</span></div>
-  <div class="stat"><b data-count="100" data-suffix="%">0</b><span>Built without templates</span></div>
-</div></div>
-
-<!-- ============================ WORK ============================ -->
-<section id="work" class="sec">
-  <div class="wrap">
-    <p class="eyebrow reveal">Selected work</p>
-    <h2 class="reveal d1 decode" data-decode="Everything below">Everything below</h2>
-    <h2 class="reveal d1 decode" data-decode="is live and in use." style="color:var(--ink-2)">is live and in use.</h2>
-    <p class="lead reveal d2" style="margin-top:26px">
-      No mockups, and no case studies for things that never launched. Each one has real
-      people depending on it, which is the only test that ever mattered. The demos are
-      interactive: they run the same logic the real systems do. Open any project to go deeper.
-    </p>
+  <!-- ============ STATS ============ -->
+  <div class="stats reveal">
+    <div class="stat s1"><b data-count="5">0</b><span>Projects shipped</span></div>
+    <div class="stat s2"><b data-count="110" data-prefix="~">0</b><span>Players on live systems</span></div>
+    <div class="stat s3"><b data-count="0" data-prefix="£">0</b><span>Ongoing hosting</span></div>
+    <div class="stat s4"><b data-count="100" data-suffix="%">0</b><span>Built without templates</span></div>
   </div>
+
+  <!-- ============ WORK ============ -->
+  <section class="sec reveal" id="work">
+    <h2>Everything here is live and in use.</h2>
+    <p class="lead">No mockups. Each one has real people depending on it, which is the only test that ever mattered. The demos run the same logic the real systems do.</p>
+  </section>
 
   <!-- 01 Trickster -->
-  <article class="proj" id="p1">
-    <div class="wrap">
-      <div class="proj-head reveal">
-        <div class="proj-num">01</div>
-        <div>
-          <div class="proj-title-row"><h3>Trickster's Hand</h3><span class="proj-role ghost">Multiplayer game</span></div>
-          <p class="mono-note" style="margin:14px 0 0">Real-time card game · 2 to 6 players + spectators · Deployed on Render</p>
+  <article class="proj reveal" id="p1" data-accent="#9B1C2E" style="--pa:#9B1C2E">
+    <div class="proj-grid">
+      <div class="proj-copy">
+        <div class="proj-top"><span class="proj-num">01</span><span class="badge">Multiplayer game</span></div>
+        <h3>Trickster's Hand</h3>
+        <div class="meta">Real-time card game · 2 to 6 players + spectators</div>
+        <p>A card game we play in person, rebuilt so it works with friends across three countries.</p>
+        <ul class="pts">
+          <li>Authoritative server, so no one can cheat</li>
+          <li>Reconnect and spectators via a per-tab identity</li>
+          <li>Illustrated deck, sound, installable app</li>
+        </ul>
+        <div class="proj-actions">
+          <a class="cta magnet" href="project.html?p=trickster" data-transition>Explore this project →</a>
+          <a class="link-accent" href="https://tricksters-hand.onrender.com/" target="_blank" rel="noopener">Play the live game ↗</a>
         </div>
       </div>
-      <div class="proj-body">
-        <div class="proj-copy reveal d1">
-          <h4>The problem</h4>
-          <p>A card game we used to play in person, rebuilt so I could keep playing it with friends now spread across different countries. Empty your hand and try not to be the last one holding cards. The hard part is not the rules, it is that no player's browser can be trusted and a table played across the world has to survive people on flaky connections refreshing, dropping out, and wandering in to watch.</p>
-          <h4>What I did about it</h4>
-          <ul class="pts">
-            <li><b>The server owns the truth.</b> Every rule, turn and trick lives server-side, so nobody can play out of turn, ignore follow-suit, or peek at another hand.</li>
-            <li><b>Identity decoupled from the connection.</b> State is keyed to a per-tab token, so a refresh or dropped connection lands you back in your exact seat, and spectators can watch a game in progress.</li>
-            <li><b>One voting engine, three flows:</b> disconnect pause, restart, and return to lobby, each resolved by unanimous consent.</li>
-            <li><b>Finished to the last detail:</b> an illustrated dark-occult deck, procedural Web Audio celebrations, a lobby tutorial, and an installable PWA.</li>
-          </ul>
-          <div style="display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center;margin-top:28px">
-            <a class="explore magnet" href="project.html?p=trickster" data-transition style="margin-top:0"><span>Explore this project</span> <span class="arw">↗</span></a>
-            <a class="ext" href="https://tricksters-hand.onrender.com/" target="_blank" rel="noopener">Play the live game ↗</a>
-          </div>
-        </div>
-        <div class="demo tilt rise" id="demo-trickster">
+      <div class="proj-demo-wrap">
+        <div class="demo" id="demo-trickster">
           <div class="demo-bar"><em>Rules engine, play a trick</em><div class="dots"><i></i><i></i><i></i></div></div>
           <div class="demo-body">
             <div class="table-top">
@@ -132,33 +106,25 @@
   </article>
 
   <!-- 02 GZD -->
-  <article class="proj" id="p2">
-    <div class="wrap">
-      <div class="proj-head reveal">
-        <div class="proj-num">02</div>
-        <div>
-          <div class="proj-title-row"><h3>GZD Badminton Club</h3><span class="proj-role">Client work</span></div>
-          <p class="mono-note" style="margin:14px 0 0">Ten-page website · Custom domain · Built, delivered, handed over</p>
+  <article class="proj reveal" id="p2" data-accent="#2B50E6" style="--pa:#2B50E6">
+    <div class="proj-grid">
+      <div class="proj-copy">
+        <div class="proj-top"><span class="proj-num">02</span><span class="badge">Community build</span></div>
+        <h3>GZD Badminton Club</h3>
+        <div class="meta">Ten-page website · Custom domain · Live</div>
+        <p>A Manchester community badminton club that wanted a website.</p>
+        <ul class="pts">
+          <li>Built a static site to the club's brief</li>
+          <li>Wrote the site, not just the code</li>
+          <li>Handed over with three months of support</li>
+        </ul>
+        <div class="proj-actions">
+          <a class="cta magnet" href="project.html?p=gzd" data-transition>Explore this project →</a>
+          <a class="link-accent" href="https://gzdbadminton.club" target="_blank" rel="noopener">Visit gzdbadminton.club ↗</a>
         </div>
       </div>
-      <div class="proj-body">
-        <div class="proj-copy reveal d1">
-          <h4>The problem</h4>
-          <p>GZD is a Manchester community badminton club that wanted a website. As a developer and a member, I built it: one place for members to find tournaments and announcements, and a proper front door for prospective sponsors.</p>
-          <h4>What I did about it</h4>
-          <ul class="pts">
-            <li><b>The organiser's choice, not mine.</b> I laid out a CMS versus a static site honestly, neither simply better; the organiser chose static, so static is what I built.</li>
-            <li><b>Ten pages, one visual identity</b>, from Home and Memberships through to Sponsors and Contact.</li>
-            <li><b>Wrote the site, not just the code:</b> club story, mission, seven play-grade descriptions, tournament records.</li>
-            <li><b>Replaced a paid widget that hit its limits</b> with native embeds, removing a recurring cost for the club.</li>
-            <li><b>Handed it over properly,</b> with the repo transferred, my access kept for maintenance, and three months of support through the handover.</li>
-          </ul>
-          <div style="display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center;margin-top:28px">
-            <a class="explore magnet" href="project.html?p=gzd" data-transition style="margin-top:0"><span>Explore this project</span> <span class="arw">↗</span></a>
-            <a class="ext" href="https://gzdbadminton.club" target="_blank" rel="noopener">Visit gzdbadminton.club ↗</a>
-          </div>
-        </div>
-        <div class="demo rise" id="demo-gzd">
+      <div class="proj-demo-wrap">
+        <div class="demo" id="demo-gzd">
           <div class="demo-bar"><em>The live site, embedded</em><div class="dots"><i></i><i></i><i></i></div></div>
           <div class="demo-body">
             <div class="siteframe" id="gzdEmbed">
@@ -166,10 +132,7 @@
               <div class="sf-view">
                 <div class="sf-poster" style="background-image:url(assets/gzd-poster.jpg)"></div>
                 <iframe title="GZD Badminton Club, live site" loading="lazy" data-src="https://gzdbadminton.club/"></iframe>
-                <div class="sf-fallback">
-                  <span class="mono-note">Live preview unavailable right now</span>
-                  <a class="ext" href="https://gzdbadminton.club/" target="_blank" rel="noopener">Open the live site ↗</a>
-                </div>
+                <div class="sf-fallback"><span class="mono-note" style="color:#b9ad9c">Live preview unavailable right now</span><a class="ext" href="https://gzdbadminton.club/" target="_blank" rel="noopener">Open the live site ↗</a></div>
               </div>
             </div>
           </div>
@@ -180,30 +143,24 @@
   </article>
 
   <!-- 03 ShuttleScore -->
-  <article class="proj" id="p3">
-    <div class="wrap">
-      <div class="proj-head reveal">
-        <div class="proj-num">03</div>
-        <div>
-          <div class="proj-title-row"><h3>ShuttleScore</h3><span class="proj-role alt">Full-stack app</span></div>
-          <p class="mono-note" style="margin:14px 0 0">Tournament management · ~110 players · Live spectator view</p>
+  <article class="proj reveal" id="p3" data-accent="#FF5A36" style="--pa:#FF5A36">
+    <div class="proj-grid">
+      <div class="proj-copy">
+        <div class="proj-top"><span class="proj-num">03</span><span class="badge">Full-stack app</span></div>
+        <h3>ShuttleScore</h3>
+        <div class="meta">Tournament system · ~110 players · Live spectator view</div>
+        <p>Runs a whole community tournament: draws, scoring, and a live public view.</p>
+        <ul class="pts">
+          <li>Auto-generated group and knockout draws</li>
+          <li>Referees score from a phone, live to spectators</li>
+          <li>History protected, results never lost</li>
+        </ul>
+        <div class="proj-actions">
+          <a class="cta magnet" href="project.html?p=shuttlescore" data-transition>Explore this project →</a>
         </div>
       </div>
-      <div class="proj-body">
-        <div class="proj-copy reveal d1">
-          <h4>The problem</h4>
-          <p>An apartment community ran a badminton tournament for roughly 110 residents across five age categories and three event types. Draws on paper, scores on WhatsApp, and nobody watching could tell you what was happening on court three.</p>
-          <h4>What I did about it</h4>
-          <ul class="pts">
-            <li><b>Draws that generate themselves:</b> round-robin groups, knockout brackets with automatic byes, group-to-knockout events, with manual override before play starts.</li>
-            <li><b>Scoring built for a phone in one hand.</b> Referees tap to score; games lock automatically once finished.</li>
-            <li><b>Spectators see it as it happens.</b> Scores, results and announcements push live to everyone watching.</li>
-            <li><b>Ties resolved the way the rules actually say,</b> and only ever within a genuine tie.</li>
-            <li><b>History protected by design:</b> a player in any match cannot be deleted, and referees are archived, not removed.</li>
-          </ul>
-          <a class="explore magnet" href="project.html?p=shuttlescore" data-transition><span>Explore this project</span> <span class="arw">↗</span></a>
-        </div>
-        <div class="demo tilt rise" id="demo-shuttlescore">
+      <div class="proj-demo-wrap">
+        <div class="demo" id="demo-shuttlescore">
           <div class="demo-bar"><em>Knockout bracket, auto-advancement</em><div class="dots"><i></i><i></i><i></i></div></div>
           <div class="demo-body"><div class="bracket-scroll"><svg class="bracket" id="bracket" viewBox="0 0 760 400" role="img" aria-label="Animated eight-player knockout bracket filling in round by round"></svg></div></div>
           <div class="demo-foot"><span id="bkStatus">Waiting…</span><button class="btn" id="bkReplay">Replay draw</button></div>
@@ -213,69 +170,54 @@
   </article>
 
   <!-- 04 ChoreSync -->
-  <article class="proj" id="p4">
-    <div class="wrap">
-      <div class="proj-head reveal">
-        <div class="proj-num">04</div>
-        <div>
-          <div class="proj-title-row"><h3>ChoreSync</h3><span class="proj-role alt">Installable app</span></div>
-          <p class="mono-note" style="margin:14px 0 0">Shared-house chore rotation · Push notifications · iPhone + Android · £0/month</p>
+  <article class="proj reveal" id="p4" data-accent="#0FB07A" style="--pa:#0FB07A">
+    <div class="proj-grid">
+      <div class="proj-copy">
+        <div class="proj-top"><span class="proj-num">04</span><span class="badge">Installable app</span></div>
+        <h3>ChoreSync</h3>
+        <div class="meta">Shared-house rotation · Push notifications · £0/month</div>
+        <p>Splits house chores fairly and reminds everyone, on any phone, for free.</p>
+        <ul class="pts">
+          <li>Balanced by time, not by task count</li>
+          <li>Rotates from the date, nothing to maintain</li>
+          <li>Installs to the home screen, with push</li>
+        </ul>
+        <div class="proj-actions">
+          <a class="cta magnet" href="project.html?p=choresync" data-transition>Explore this project →</a>
         </div>
       </div>
-      <div class="proj-body">
-        <div class="proj-copy reveal d1">
-          <h4>The problem</h4>
-          <p>Three housemates, a mixed iPhone and Android household, and the usual argument about whose turn it was. Splitting chores evenly by count does not work, because one person ends up with the bathroom and one gets the bins.</p>
-          <h4>What I did about it</h4>
-          <ul class="pts">
-            <li><b>Balanced by time, not by task.</b> Every chore was timed, then grouped into three zones within a one-minute spread.</li>
-            <li><b>Rotates on its own, forever.</b> The week is worked out from the date, so there is no schedule to maintain.</li>
-            <li><b>A real app on the home screen, for free,</b> where a native build would have cost £79 a year just to reach an iPhone.</li>
-            <li><b>Nudges instead of nagging:</b> configurable reminders for chore day, bins out, bins in and overdue.</li>
-            <li><b>Changing the rules did not rewrite history.</b> Past weeks stay scored by the rules that were live at the time.</li>
-          </ul>
-          <a class="explore magnet" href="project.html?p=choresync" data-transition><span>Explore this project</span> <span class="arw">↗</span></a>
-        </div>
-        <div class="demo tilt rise" id="demo-choresync">
+      <div class="proj-demo-wrap">
+        <div class="demo" id="demo-choresync">
           <div class="demo-bar"><em>Rotation engine, drag the week</em><div class="dots"><i></i><i></i><i></i></div></div>
           <div class="demo-body">
             <div class="rot-grid" id="rotGrid"></div>
-            <div class="slider-row">
-              <label for="wkSlider">Week</label>
-              <input type="range" id="wkSlider" min="0" max="8" value="0" step="1" aria-label="Week number">
-              <span class="wk" id="wkLabel">Week 1</span>
-            </div>
+            <div class="slider-row"><label for="wkSlider">Week</label><input type="range" id="wkSlider" min="0" max="8" value="0" step="1" aria-label="Week number"><span class="wk" id="wkLabel">Week 1</span></div>
           </div>
-          <div class="demo-foot"><span>Assignment = <span style="color:var(--volt)">(person + week) mod 3</span>, every zone once per 3 weeks</span><button class="btn" id="rotCarry">Simulate a missed week</button></div>
+          <div class="demo-foot"><span>Assignment = <span style="color:var(--volt)">(person + week) mod 3</span></span><button class="btn" id="rotCarry">Simulate a missed week</button></div>
         </div>
       </div>
     </div>
   </article>
 
   <!-- 05 Shuttle Up -->
-  <article class="proj" id="p5">
-    <div class="wrap">
-      <div class="proj-head reveal">
-        <div class="proj-num">05</div>
-        <div>
-          <div class="proj-title-row"><h3>Shuttle Up!</h3><span class="proj-role ghost">Small tool</span></div>
-          <p class="mono-note" style="margin:14px 0 0">Drop-in session manager · One file · No backend</p>
+  <article class="proj reveal" id="p5" data-accent="#E0850F" style="--pa:#E0850F">
+    <div class="proj-grid">
+      <div class="proj-copy">
+        <div class="proj-top"><span class="proj-num">05</span><span class="badge">Small tool</span></div>
+        <h3>Shuttle Up!</h3>
+        <div class="meta">Drop-in session manager · One file · No backend</div>
+        <p>Runs a casual badminton session: who plays, who is waiting, kept fair.</p>
+        <ul class="pts">
+          <li>Fewest games play next, teams auto-shuffled</li>
+          <li>Tap to swap players or repartner the teams</li>
+          <li>One file, no server, installs to a phone</li>
+        </ul>
+        <div class="proj-actions">
+          <a class="cta magnet" href="project.html?p=shuttleup" data-transition>Explore this project →</a>
         </div>
       </div>
-      <div class="proj-body">
-        <div class="proj-copy reveal d1">
-          <h4>The problem</h4>
-          <p>At casual badminton sessions somebody always ends up managing a paper list of who has played and who is waiting. People get skipped, and the person holding the pen never gets a game.</p>
-          <h4>What I did about it</h4>
-          <ul class="pts">
-            <li><b>Fairness as the default.</b> Courts fill with the four waiting players who have had the fewest games, then shuffle into teams.</li>
-            <li><b>Overridable, because real sessions are not tidy:</b> swap anyone on court, or swap someone in from the queue.</li>
-            <li><b>Copes with the room changing,</b> from late arrivals to courts opening up or being lost mid-session.</li>
-            <li><b>The whole app is one file,</b> with no dependencies, no server, and a home-screen install.</li>
-          </ul>
-          <a class="explore magnet" href="project.html?p=shuttleup" data-transition><span>Explore this project</span> <span class="arw">↗</span></a>
-        </div>
-        <div class="demo tilt rise" id="demo-shuttleup">
+      <div class="proj-demo-wrap">
+        <div class="demo" id="demo-shuttleup">
           <div class="demo-bar"><em>Fairness rule, fewest games play next</em><div class="dots"><i></i><i></i><i></i></div></div>
           <div class="demo-body">
             <div class="court"><div class="teams" id="courtTeams"></div></div>
@@ -287,67 +229,43 @@
     </div>
   </article>
 
-</section>
-
-<!-- tech marquee -->
-<div class="marquee reveal" aria-hidden="true">
-  <div class="marquee-track">
-    <span>React 19</span><span>Supabase</span><span>PostgreSQL</span><span>Web Push</span><span>Service Workers</span><span>Node.js</span><span>Socket.IO</span><span>Row Level Security</span><span>pg_cron</span><span>Vanilla JS</span><span>PWA</span><span>GitHub Pages</span>
-    <span>React 19</span><span>Supabase</span><span>PostgreSQL</span><span>Web Push</span><span>Service Workers</span><span>Node.js</span><span>Socket.IO</span><span>Row Level Security</span><span>pg_cron</span><span>Vanilla JS</span><span>PWA</span><span>GitHub Pages</span>
   </div>
-</div>
-
-<div class="wrap"><div class="divider reveal"><span class="birdie"></span></div></div>
-
-<!-- ============================ APPROACH ============================ -->
-<section id="approach" class="sec">
-  <div class="wrap">
-    <p class="eyebrow reveal">How I work</p>
-    <h2 class="reveal d1 decode" data-decode="The build is the">The build is the</h2>
-    <h2 class="reveal d1 decode" data-decode="easy part." style="color:var(--volt)">easy part.</h2>
-    <p class="lead reveal d2" style="margin:26px 0 48px">
-      Most of the value is not in typing code. It is in deciding what not to build, spotting the
-      decision that will hurt in six months, and testing the thing that would fail silently.
-      That is where I spend my time.
-    </p>
-    <div class="steps reveal d3">
-      <div class="step"><i>01</i><h4>Scope to reality</h4><p>What can you actually maintain after I am gone? That question kills more features than any budget, and it is why GZD is a static site and not a CMS.</p></div>
-      <div class="step"><i>02</i><h4>Decide, then justify</h4><p>Every architecture choice gets written down with its reason and its rejected alternatives, so if a constraint changes later you know what to revisit.</p></div>
-      <div class="step"><i>03</i><h4>Protect the history</h4><p>Rules change, data should not get rewritten when they do. Past records stay interpreted by the rules that were live at the time.</p></div>
-      <div class="step"><i>04</i><h4>Test what fails quietly</h4><p>Loud bugs get found. I go looking for the silent ones, the reminder that stopped sending, the record attributed to the wrong person.</p></div>
+  <!-- ============ TECH MARQUEE ============ -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>React 19</span><span>Supabase</span><span>PostgreSQL</span><span>Web Push</span><span>Service Workers</span><span>Node.js</span><span>Socket.IO</span><span>Web Audio</span><span>Row Level Security</span><span>pg_cron</span><span>Vanilla JS</span><span>PWA</span><span>GitHub Pages</span>
+      <span>React 19</span><span>Supabase</span><span>PostgreSQL</span><span>Web Push</span><span>Service Workers</span><span>Node.js</span><span>Socket.IO</span><span>Web Audio</span><span>Row Level Security</span><span>pg_cron</span><span>Vanilla JS</span><span>PWA</span><span>GitHub Pages</span>
     </div>
-    <p class="lead reveal" style="margin-top:48px">
-      I work fast, and I use modern tooling to do it. What I do not do is ship something I have
-      not reasoned through. Every project here has at least one decision I reversed because the
-      first version would have quietly broken later.
-    </p>
   </div>
-</section>
-
-<!-- ============================ CONTACT ============================ -->
-<section id="contact" class="sec">
   <div class="wrap">
-    <p class="eyebrow reveal">Get in touch</p>
-    <h2 class="reveal d1" style="margin-bottom:28px">Got something<br>that needs building?</h2>
-    <p class="lead reveal d2" style="margin-bottom:40px">
-      This is what I do outside of work, which means I take on a small number of things and give
-      them proper attention. Clubs, community groups and small organisations especially: tell me
-      what the problem is and I will tell you honestly whether I am the right person.
-    </p>
-    <p class="reveal d3" style="margin:0">
-      <a class="big-link magnet" href="mailto:jusa_name@yahoo.com"><span>Email me ↗</span></a>
-    </p>
-    <p class="reveal d3 mono-note" style="margin:14px 0 0">jusa_name@yahoo.com
-    </p>
-  </div>
-</section>
+
+  <!-- ============ APPROACH ============ -->
+  <section class="sec reveal" id="approach">
+    <h2>The build is the easy part.</h2>
+    <p class="lead">The value is in deciding what not to build, spotting the choice that hurts in six months, and testing what fails silently.</p>
+    <div class="steps">
+      <div class="step"><i>01</i><h4>Scope to reality</h4><p>What can you maintain after I'm gone? That kills more features than any budget.</p></div>
+      <div class="step"><i>02</i><h4>Decide, then justify</h4><p>Every choice written down with its reason and the options I rejected.</p></div>
+      <div class="step"><i>03</i><h4>Protect the history</h4><p>Rules change; past records shouldn't get rewritten when they do.</p></div>
+      <div class="step"><i>04</i><h4>Test quiet failures</h4><p>I hunt the bugs that fail silently, not just the loud ones.</p></div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="contact reveal" id="contact">
+    <h2>Got something<br>that needs building?</h2>
+    <p class="lead" style="margin-top:22px">This is what I do outside of work, so I take on a few things and give them real attention. Clubs and community groups especially, tell me the problem and I'll tell you honestly if I'm the right person.</p>
+    <a class="big magnet" href="mailto:jusa_name@yahoo.com">Email me →</a>
+    <div class="addr">jusa_name@yahoo.com</div>
+  </section>
+
+</div>
 
 <div class="wrap"><footer>
   <span>© 2026 Shil, built by hand, no framework</span>
   <span>Manchester, UK</span>
 </footer></div>
 
-<script src="js/hero.js"></script>
 <script src="js/core.js"></script>
 <script src="js/demos.js"></script>
 </body>
